@@ -15,8 +15,25 @@
 	<script src="scripts/video-colors.js" ></script>
 </head>
 <body>
-  <div onload="videoSetup()" id="wrapper" class="container-fluid">
+  <div id="wrapper" class="container-fluid">
 	
 	</div>
+	<button id="snap">Snap Photo</button>
+<canvas id="canvas" width="640" height="480"></canvas>
+	<!-- Photo capturing https://developers.google.com/web/fundamentals/media/capturing-images -->
+	<script>
+	  window.onload = videoSetup().then(videoFeed());
+// Trigger photo take
+document.getElementById("snap").addEventListener("click", function() {
+	const canvas = document.getElementById('canvas');
+	const context = canvas.getContext('2d');
+	const video = document.getElementById('video');
+  context.drawImage(video, 0, 0, 640, 480);
+	const imgData = context.getImageData(0,0,100, 100);
+	console.log(imgData);
+	console.log(findColor([imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]]));
+  //context.putImageData(imgData, 100, 100);
+});
+	</script>
 </body>
 </html>
