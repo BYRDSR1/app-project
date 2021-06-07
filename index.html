@@ -32,7 +32,7 @@ document.getElementById("snap").addEventListener("click", function() {
 	//get image data from a 10px x 10px space
 	//middle is 315 from left, and 235 down
 	const imgData = context.getImageData(315,235,10, 10);
-	//console.log(imgData);
+	console.log(imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]);
 	console.log(findColor([imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]]));
   //context.putImageData(imgData, 315, 235);
 });
