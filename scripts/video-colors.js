@@ -87,6 +87,11 @@ const videoFeed = () => {
 
 }
 
+const getColorType = (rgba) => {
+	
+}
+
+
 const findColor = (rgba) => {
 	return convertRGBAToHex(rgba);
 }

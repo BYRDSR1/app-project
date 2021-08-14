@@ -18,13 +18,12 @@
   <div id="wrapper" class="container-fluid">
 	
 	</div>
-	<button id="snap">Snap Photo</button>
-<canvas id="canvas" width="640" height="480"></canvas>
+	<!--<button id="snap">Snap Photo</button>-->
+<canvas id="canvas" width="640" height="480" hidden ></canvas>
 	<!-- Photo capturing https://developers.google.com/web/fundamentals/media/capturing-images -->
 	<script>
-	  window.onload = videoSetup().then(videoFeed());
 // Trigger photo take
-document.getElementById("snap").addEventListener("click", function() {
+/* 		document.getElementById("snap").addEventListener("click", function() {
 	const canvas = document.getElementById('canvas');
 	const context = canvas.getContext('2d');
 	const video = document.getElementById('video');
@@ -35,7 +34,21 @@ document.getElementById("snap").addEventListener("click", function() {
 	//console.log(imgData);
 	console.log(findColor([imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]]));
   //context.putImageData(imgData, 315, 235);
-});
+}); */
+		const colorStuff = () => {
+			const canvas = document.getElementById('canvas');
+			const context = canvas.getContext('2d');
+			const video = document.getElementById('video');
+			context.drawImage(video, 0, 0, canvas.width, canvas.height);
+			//get image data from a 10px x 10px space
+			//middle is 315 from left, and 235 down
+			const imgData = context.getImageData(315,235,10, 10);
+			//console.log(imgData);
+			console.log(findColor([imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]]));
+			//context.putImageData(imgData, 315, 235);
+		}
+		window.onload = videoSetup().then(videoFeed()).then(setInterval(colorStuff, 1));
+		document.getElementById("snap").addEventListener("click", colorStuff);
 	</script>
 </body>
 </html>
