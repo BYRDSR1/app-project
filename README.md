@@ -7,4 +7,7 @@
   - scripts/
     - video-colors.js
   - index.html
-  - README.md    
+  - README.md
+--    
+## Credits
+Thanks to Chirag Mehta's "Name that Color" tool for the color-recognizing part of this app

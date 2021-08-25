@@ -13,6 +13,9 @@
 	<!--End Bootstrap CDN-->
 	<!--VideoColors-->
 	<script src="scripts/video-colors.js" ></script>
+	<!--ntc.js made by Chirag Mehta (See README.md for more details)-->
+	<script src="scripts/nts.js" ></script>
+
 </head>
 <body>
   <div id="wrapper" class="container-fluid">
@@ -48,7 +51,6 @@
 			//context.putImageData(imgData, 315, 235);
 		}
 		window.onload = videoSetup().then(videoFeed()).then(setInterval(colorStuff, 1));
-		document.getElementById("snap").addEventListener("click", colorStuff);
 	</script>
 </body>
 </html>
