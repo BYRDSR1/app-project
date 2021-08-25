@@ -47,7 +47,8 @@
 			//middle is 315 from left, and 235 down
 			const imgData = context.getImageData(315,235,10, 10);
 			//console.log(imgData);
-			console.log(findColor([imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]]));
+			let n_color = ntc.name(findColor([imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]]))[1];
+			console.log(n_color);
 			//context.putImageData(imgData, 315, 235);
 		}
 		window.onload = videoSetup().then(videoFeed()).then(setInterval(colorStuff, 1));
