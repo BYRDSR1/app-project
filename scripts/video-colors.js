@@ -93,5 +93,5 @@ const getColorType = (rgba) => {
 
 
 const findColor = (rgba) => {
-	return convertRGBAToHex(rgba);
+	return convertRGBAToHex(rgba)[0];
 }
