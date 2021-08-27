@@ -87,8 +87,70 @@ const videoFeed = () => {
 
 }
 
-const getColorType = (rgba) => {
-	
+const hueToColor = (hue) => {
+	if(hue <= 7) {
+		return "Red";
+	} else if(hue <= 22) {
+		return "Orange-Red";
+	} else if(hue <= 37) {
+		return "Orange";
+	} else if(hue <= 52) {
+		return "Khaki";
+	} else if(hue <= 67) {
+		return "Yellow";
+	} else if(hue <= 82) {
+		return "Lime";
+	} else if(hue <= 97) {
+		return "Olive";
+	} else if(hue <= 102) {
+		return "Grass Green";
+	} else if(hue <= 127) {
+		return "Green";
+	} else if(hue <= 142) {
+		return "Bluish-Green";
+	} else if(hue <= 157) {
+		return "Teal";
+	} else if(hue <= 172) {
+		return "Turquoise";
+	} else if(hue <=187) {
+		return "Cyan";
+	} else if(hue <= 202) {
+		return "Bluish Cyan";
+	} else if(hue <= 217) {
+		return "Light Blue";
+	} else if(hue <= 232) {
+		return "Blue";
+	} else if(hue <= 247) {
+		return "Dark Blue";
+	} else if(hue <= 262) {
+		return "Bluish Purple";
+	} else if(hue <= 277) {
+		return "Purple";
+	} else if(hue <= 292) {
+		return "Purple-Magenta";
+	} else if(hue <= 307) {
+		return "Pink";
+	} else if(hue <= 322) {
+		return "Hot Pink";
+	} else if(hue <= 337) {
+		return "Crimson";
+	} else if(hue <= 345) {
+		return "Scarlet Red";
+	} else {
+		return "Error: Hue Not Found";
+	}
+}
+
+const getHue = (rgb) => {
+	const red = rgb[0],
+		green = rgb[1],
+		blue = rgb[2];
+	const radHue = Math.atan2((Math.sqrt(3) * (green - blue)), ((2 * red) - green - blue));
+	let degHue = (radHue * 180) / Math.PI;
+	while(degHue < 0) {
+		degHue += 360;
+	}
+	return hueToColor(degHue);
 }
 
 
