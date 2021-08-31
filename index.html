@@ -23,7 +23,7 @@
 	</div>
 	<!--<button id="snap">Snap Photo</button>-->
 <canvas id="canvas" width="640" height="480" hidden ></canvas>
-<div id="color">Color</div>
+<div id="color">&nbsp;</div>
 	<!-- Photo capturing https://developers.google.com/web/fundamentals/media/capturing-images -->
 	<script>
 // Trigger photo take
@@ -51,7 +51,7 @@
 			let n_color = ntc.name(findColor([imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]]))[1];
 			//console.log(n_color);
 			document.getElementById("color").style.backgroundColor = findColor([imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]]);
-			console.log(getHue([imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]]), [imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]]);
+			console.log("hue: ", getHue([imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]]), [imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]], "\ncolor: ", n_color);
 			//context.putImageData(imgData, 315, 235);
 		}
 		window.onload = videoSetup().then(videoFeed()).then(setInterval(colorStuff, 1000));

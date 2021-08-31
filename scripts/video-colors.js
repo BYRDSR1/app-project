@@ -137,8 +137,12 @@ const hueToColor = (hue) => {
 	} else if(hue <= 345) {
 		return "Scarlet Red";
 	} else {
-		return "Error: Hue Not Found";
+		return "Brown";
 	}
+}
+
+const calcLightness = (rgb) => {
+	//lightness = ( Math.max(r,g,b) + Math.min(r,g,b) ) / 2
 }
 
 const getHue = (rgb) => {
