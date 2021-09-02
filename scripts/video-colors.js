@@ -141,6 +141,11 @@ const hueToColor = (hue) => {
 	}
 }
 
+const findMean = (rgb) => {
+  const lowest = Math.min(rgb[0], rgb[1], rgb[2]),
+	mid = 
+}
+
 const calcLightness = (rgb) => {
 	//lightness = ( Math.max(r,g,b) + Math.min(r,g,b) ) / 2
 	const red = rgb[0],
