@@ -142,8 +142,30 @@ const hueToColor = (hue) => {
 }
 
 const calcLightness = (rgb) => {
-	//lightness = ( Math.max(r,g,b) + Math.min(r,g,b) ) / 2
+0	//lightness = ( Math.max(r,g,b) + Math.min(r,g,b) ) / 2
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const getHue = (rgb) => {
 	const red = rgb[0],
