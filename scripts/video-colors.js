@@ -1,3 +1,45 @@
+
+
+
+const videoSetup = async () => {
+	if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+		const wrapper = document.getElementById("wrapper");
+		const video = document.createElement("video");
+		video.id = "video";
+		video.width = video.height = 640;
+		video.autoplay = true;
+		wrapper.appendChild(video);
+	}
+}
+
+const videoFeed = () => {
+	const video = document.getElementById("video");
+	if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    // Not adding `{ audio: true }` since we only want video now
+    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+        //video.src = window.URL.createObjectURL(stream);
+        video.srcObject = stream;
+        video.play();
+    });
+	} else if(navigator.getUserMedia) { // Standard
+    navigator.getUserMedia({ video: true }, function(stream) {
+        video.src = stream;
+        video.play();
+    }, errBack);
+	} else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+    navigator.webkitGetUserMedia({ video: true }, function(stream){
+        video.src = window.webkitURL.createObjectURL(stream);
+        video.play();
+    }, errBack);
+	} else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
+    navigator.mozGetUserMedia({ video: true }, function(stream){
+        video.srcObject = stream;
+        video.play();
+    }, errBack);
+	}
+
+}
+
 const convertNumberToHex = (num) => {
 	if(num > 9) {
 		switch(num) {
@@ -46,45 +88,6 @@ const convertRGBAToHex = (rgba) => {
 		}
 	}
 	return rgba[3] ? [hex, rgba[3]] : [hex];
-}
-
-const videoSetup = async () => {
-	if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-		const wrapper = document.getElementById("wrapper");
-		const video = document.createElement("video");
-		video.id = "video";
-		video.width = video.height = 640;
-		video.autoplay = true;
-		wrapper.appendChild(video);
-	}
-}
-
-const videoFeed = () => {
-	const video = document.getElementById("video");
-	if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    // Not adding `{ audio: true }` since we only want video now
-    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
-        //video.src = window.URL.createObjectURL(stream);
-        video.srcObject = stream;
-        video.play();
-    });
-	} else if(navigator.getUserMedia) { // Standard
-    navigator.getUserMedia({ video: true }, function(stream) {
-        video.src = stream;
-        video.play();
-    }, errBack);
-	} else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
-    navigator.webkitGetUserMedia({ video: true }, function(stream){
-        video.src = window.webkitURL.createObjectURL(stream);
-        video.play();
-    }, errBack);
-	} else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
-    navigator.mozGetUserMedia({ video: true }, function(stream){
-        video.srcObject = stream;
-        video.play();
-    }, errBack);
-	}
-
 }
 
 const hueToColor = (hue) => {
@@ -141,9 +144,14 @@ const hueToColor = (hue) => {
 	}
 }
 
-const findMean = (rgb) => {
-  const lowest = Math.min(rgb[0], rgb[1], rgb[2]),
-	mid = 
+/* Start White, Gray, Black Hue finding functions */
+
+const orderRGB = (rgb) => {
+	let [...temp] = rgb;
+  const lowest = temp.splice(temp.indexOf(Math.min(rgb[0], rgb[1], rgb[2])), 1)[0],
+		    highest = temp.splice(temp.indexOf(Math.max(rgb[0], rgb[1], rgb[2])), 1)[0],
+				middle = temp[0];
+	return [lowest, middle, highest];
 }
 
 const calcLightness = (rgb) => {
@@ -155,16 +163,42 @@ const calcLightness = (rgb) => {
 	return lightness;
 }
 
-const getHue = (rgb) => {
-	const red = rgb[0],
-		green = rgb[1],
-		blue = rgb[2];
-	const radHue = Math.atan2((Math.sqrt(3) * (green - blue)), ((2 * red) - green - blue));
-	let degHue = (radHue * 180) / Math.PI;
-	while(degHue < 0) {
-		degHue += 360;
+const findShade = (rgb) => {
+	const orderedRGB = orderRGB(rgb);
+	if(( (orderedRGB[1] - orderedRGB[0]) > 10) || ((orderedRGB[2] - orderedRGB[1]) > 10)) {
+		return 0;
+	} else {
+		const lightness = calcLightness(rgb);
+		if(lightness >= 200) {
+			return "White";
+		} else if(lightness >= 150) {
+			return "Light Gray";
+		} else if(lightness >= 100) {
+			return "Gray";
+	  } else if(lightness >= 50) {
+			return "Dark Gray";
+		} else if(lightness >= 0) {
+		  return "Black";
+	  } else {
+			return false;
+		}
 	}
-	return hueToColor(degHue);
+} 
+
+const getHue = (rgb) => {
+	if(findShade(rgb)) {
+		return findShade(rgb);
+	} else { 
+		const red = rgb[0],
+			    green = rgb[1],
+			    blue = rgb[2];
+		const radHue = Math.atan2((Math.sqrt(3) * (green - blue)), ((2 * red) - green - blue));
+		let degHue = (radHue * 180) / Math.PI;
+		while(degHue < 0) {
+			degHue += 360;
+		}
+		return hueToColor(degHue);
+	} 
 }
 
 
