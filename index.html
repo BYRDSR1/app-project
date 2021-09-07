@@ -13,18 +13,21 @@
 	<!--End Bootstrap CDN-->
 	<!--VideoColors-->
 	<script src="scripts/video-colors.js" ></script>
+	<!--ntc.js made by Chirag Mehta (See README.md for more details)-->
+	<script src="scripts/ntc.js" ></script>
+
 </head>
 <body>
   <div id="wrapper" class="container-fluid">
 	
 	</div>
-	<button id="snap">Snap Photo</button>
-<canvas id="canvas" width="640" height="480"></canvas>
+	<!--<button id="snap">Snap Photo</button>-->
+<canvas id="canvas" width="640" height="480" hidden ></canvas>
+<div id="color">&nbsp;</div>
 	<!-- Photo capturing https://developers.google.com/web/fundamentals/media/capturing-images -->
 	<script>
-	  window.onload = videoSetup().then(videoFeed());
 // Trigger photo take
-document.getElementById("snap").addEventListener("click", function() {
+/* 		document.getElementById("snap").addEventListener("click", function() {
 	const canvas = document.getElementById('canvas');
 	const context = canvas.getContext('2d');
 	const video = document.getElementById('video');
@@ -35,7 +38,23 @@ document.getElementById("snap").addEventListener("click", function() {
 	console.log(imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]);
 	console.log(findColor([imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]]));
   //context.putImageData(imgData, 315, 235);
-});
+}); */
+		const colorStuff = () => {
+			const canvas = document.getElementById('canvas');
+			const context = canvas.getContext('2d');
+			const video = document.getElementById('video');
+			context.drawImage(video, 0, 0, canvas.width, canvas.height);
+			//get image data from a 10px x 10px space
+			//middle is 315 from left, and 235 down
+			const imgData = context.getImageData(315,235,10, 10);
+			//console.log(imgData);
+			let n_color = ntc.name(findColor([imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]]))[1];
+			//console.log(n_color);
+			document.getElementById("color").style.backgroundColor = findColor([imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]]);
+			console.log("hue: ", getHue([imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]]), [imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]], "\ncolor: ", n_color);
+			//context.putImageData(imgData, 315, 235);
+		}
+		window.onload = videoSetup().then(videoFeed()).then(setInterval(colorStuff, 1000));
 	</script>
 </body>
 </html>
