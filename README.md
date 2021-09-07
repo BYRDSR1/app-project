@@ -5,7 +5,7 @@
 ## File Structure
 - root/
   - scripts/
-    - video-colors.js
+  - video-colors.js
   - index.html
   - README.md
 --    

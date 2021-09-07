@@ -1,6 +1,3 @@
-
-
-
 const videoSetup = async () => {
 	if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 		const wrapper = document.getElementById("wrapper");
@@ -200,7 +197,6 @@ const getHue = (rgb) => {
 		return hueToColor(degHue);
 	} 
 }
-
 
 const findColor = (rgba) => {
 	return convertRGBAToHex(rgba)[0];
