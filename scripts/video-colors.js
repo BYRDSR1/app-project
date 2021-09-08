@@ -101,7 +101,7 @@ const hueToColor = (hue) => {
 	} else if(hue <= 82) {
 		return "Lime";
 	} else if(hue <= 97) {
-		return "Olive";
+		return "Light Green";
 	} else if(hue <= 102) {
 		return "Grass Green";
 	} else if(hue <= 127) {
@@ -115,7 +115,7 @@ const hueToColor = (hue) => {
 	} else if(hue <=187) {
 		return "Cyan";
 	} else if(hue <= 202) {
-		return "Bluish Cyan";
+		return "Bluish-Cyan";
 	} else if(hue <= 217) {
 		return "Light Blue";
 	} else if(hue <= 232) {
@@ -123,7 +123,7 @@ const hueToColor = (hue) => {
 	} else if(hue <= 247) {
 		return "Dark Blue";
 	} else if(hue <= 262) {
-		return "Bluish Purple";
+		return "Bluish-Purple";
 	} else if(hue <= 277) {
 		return "Purple";
 	} else if(hue <= 292) {
@@ -184,13 +184,49 @@ const findShade = (rgb) => {
 
 /* End Monochrome Hue Functions */
 
-const getExactHue(hue, lightness) => {
+const getExactHue = (hue, lightness) => {
   if(lightness <= 158 && lightness >= 94) {
     return hue;
   } else if(lightness > 158) {
   	//Lighter hues
   } else if(lightness < 94) {
 	  //Darker hues
+	  switch(hue) {
+		  case "Red":
+			  return "Maroon";
+			  break;
+		  case "Orange-Red":
+			  return "Brown";
+			  break;
+		  case "Orange":
+			  return "Brown";
+			  break;
+		  case "Khaki":
+			  return "Golden Brown";
+			  break;
+		  case "Yellow":
+			  return "Olive";
+			  break;
+		  case "Lime":
+			  return "Dark Green";
+			  break;
+		  case "Light Green":
+			  return "Dark Green";
+			  break;
+		  case "Grass Green":
+			  return "Dark Green";
+			  break;
+		  case "Green":
+			  return "Dark Green";
+			  break;
+		  case "Bluish-Green":
+			  return "Dark Bluish-Green;
+			  break;
+		  case "Teal":
+			  //Resume here
+			  break;
+
+	  }
   } else {
 	throw new Error("Unable to determine lightness");
   }
