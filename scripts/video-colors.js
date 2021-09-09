@@ -109,7 +109,7 @@ const hueToColor = (hue) => {
 	} else if(hue <= 142) {
 		return "Bluish-Green";
 	} else if(hue <= 157) {
-		return "Teal";
+		return "Spring Green";
 	} else if(hue <= 172) {
 		return "Turquoise";
 	} else if(hue <=187) {
@@ -224,8 +224,11 @@ const getExactHue = (hue, lightness) => {
 		  case "Bluish-Green":
 			  return "Dark Bluish-Green";
 			  break;
-		  case "Teal":
-			  //Resume here
+		  case "Spring Green":
+			  return "Dark Spring Green";
+			  break;
+		  case "":
+			  //RESUME HERE
 			  break;
 
 	  }
