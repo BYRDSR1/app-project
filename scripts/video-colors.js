@@ -136,8 +136,10 @@ const hueToColor = (hue) => {
 		return "Crimson";
 	} else if(hue <= 345) {
 		return "Scarlet Red";
+	} else if(hue <= 360) {
+		return "Red";
 	} else {
-		return "Brown";
+		throw new Error("Color Hue not Found");
 	}
 }
 
@@ -220,7 +222,7 @@ const getExactHue = (hue, lightness) => {
 			  return "Dark Green";
 			  break;
 		  case "Bluish-Green":
-			  return "Dark Bluish-Green;
+			  return "Dark Bluish-Green";
 			  break;
 		  case "Teal":
 			  //Resume here
