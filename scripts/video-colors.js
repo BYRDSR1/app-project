@@ -117,29 +117,29 @@ const hueToColor = (hue) => {
 	} else if(hue <= 202) {
 		return "Bluish-Cyan";
 	} else if(hue <= 217) {
-		return "Light Blue";
-	} else if(hue <= 232) {
 		return "Blue";
+	} else if(hue <= 232) {
+		return "Medium Blue";
 	} else if(hue <= 247) {
-		return "Dark Blue";
+		return "Medium Blue";
 	} else if(hue <= 262) {
 		return "Bluish-Purple";
 	} else if(hue <= 277) {
 		return "Purple";
 	} else if(hue <= 292) {
-		return "Purple-Magenta";
+		return "Magenta";
 	} else if(hue <= 307) {
 		return "Pink";
 	} else if(hue <= 322) {
 		return "Hot Pink";
 	} else if(hue <= 337) {
-		return "Crimson";
+		return "Bright Pink";
 	} else if(hue <= 345) {
-		return "Scarlet Red";
+		return "Scarlet";
 	} else if(hue <= 360) {
 		return "Red";
 	} else {
-		throw new Error("Color Hue not Found");
+		throw new Error("Color hue not Found");
 	}
 }
 
@@ -191,6 +191,7 @@ const getExactHue = (hue, lightness) => {
     return hue;
   } else if(lightness > 158) {
   	//Lighter hues
+	return ("Light " + hue);
   } else if(lightness < 94) {
 	  //Darker hues
 	  switch(hue) {
@@ -227,8 +228,43 @@ const getExactHue = (hue, lightness) => {
 		  case "Spring Green":
 			  return "Dark Spring Green";
 			  break;
-		  case "":
-			  //RESUME HERE
+		  case "Turquoise":
+			  return "Dark Turquoise";
+			  break;
+		  case "Cyan":
+			  return "Dark Cyan";
+			  break;
+		  case "Bluish-Cyan":
+			  return "Navy Blue";
+			  break;
+		  case "Blue":
+			  return "Dark Blue";
+			  break;
+		  case "Medium Blue":
+			  return "Navy Blue";
+			  break;
+		  case "Bluish Purple":
+			  return "Navy Blue";
+			  break;
+		  case "Purple":
+			  return "Dark Purple";
+			  break;
+		  case "Magenta":
+			  return "Dark Magenta";
+			  break;
+		  case "Pink":
+			  return "Magenta Purple";
+			  break;
+		  case "Hot Pink":
+			  return "Dark Magenta";
+			  break;
+		  case "Bright Pink":
+			  return "Maroon";
+			  break;
+		  case "Scarlet":
+			  return "Maroon";
+		  default:
+			  throw new Error("Dark hue not determined");
 			  break;
 
 	  }
