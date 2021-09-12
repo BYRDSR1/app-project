@@ -139,7 +139,7 @@ const hueToColor = (hue) => {
 	} else if(hue <= 360) {
 		return "Red";
 	} else {
-		throw new Error("Color hue not Found", hue);
+		throw new Error("Color hue not Found" + ", " + hue);
 	}
 }
 
@@ -191,7 +191,79 @@ const getExactHue = (hue, lightness, isShade) => {
     return hue;
   } else if(lightness > 158) {
   	//Lighter hues
-	  return ("Light " + hue);
+	  switch(hue) {
+		  case "Red":
+			  return "Pale Pink";
+			  break;
+		  case "Orange-Red":
+			  return "Light Tan";
+			  break;
+		  case "Orange":
+			  return "Light Tan";
+			  break;
+		  case "Khaki":
+			  return "Pale Yellow";
+			  break;
+		  case "Yellow":
+			  return "Pale Yellow";
+			  break;
+		  case "Lime":
+			  return "Pale Lime";
+			  break;
+		  case "Light Green":
+			  return "Pale Light Green";
+			  break;
+		  case "Grass Green":
+			  return "Pale Green";
+			  break;
+		  case "Green":
+			  return "Pale Green";
+			  break;
+		  case "Bluish-Green":
+			  return "Pale Turquoise";
+			  break;
+		  case "Spring Green":
+			  return "Pale Turquoise";
+			  break;
+		  case "Turquoise":
+			  return "Pale Turquoise";
+			  break;
+		  case "Cyan":
+			  return "Pale Cyan";
+			  break;
+		  case "Bluish-Cyan":
+			  return "Pale Light Blue";
+			  break;
+		  case "Blue":
+			  return "Pale Light Blue";
+			  break;
+		  case "Medium Blue":
+			  return "Baby Blue";
+			  break;
+		  case "Bluish-Purple":
+			  return "Light Purple";
+			  break;
+		  case "Purple":
+			  return "Light Purple";
+			  break;
+		  case "Magenta":
+			  return "Baby Pink";
+			  break;
+		  case "Pink":
+			  return "Baby Pink";
+			  break;
+		  case "Hot Pink":
+			  return "Light Pink";
+			  break;
+		  case "Bright Pink":
+			  return "Light Pink";
+			  break;
+		  case "Scarlet":
+			  return "Light Pink";
+		  default:
+			  throw new Error("Light hue not determined" + ", " + hue);
+			  break;
+	  }
   } else if(lightness < 94) {
 	  //Darker hues
 	  switch(hue) {
@@ -243,7 +315,7 @@ const getExactHue = (hue, lightness, isShade) => {
 		  case "Medium Blue":
 			  return "Navy Blue";
 			  break;
-		  case "Bluish Purple":
+		  case "Bluish-Purple":
 			  return "Navy Blue";
 			  break;
 		  case "Purple":
@@ -264,9 +336,8 @@ const getExactHue = (hue, lightness, isShade) => {
 		  case "Scarlet":
 			  return "Maroon";
 		  default:
-			  throw new Error("Dark hue not determined");
+			  throw new Error("Dark hue not determined" + ", " + hue);
 			  break;
-
 	  }
   } else {
 	throw new Error("Unable to determine lightness");
