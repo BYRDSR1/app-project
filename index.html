@@ -48,10 +48,11 @@
 			//middle is 315 from left, and 235 down
 			const imgData = context.getImageData(315,235,10, 10);
 			//console.log(imgData);
-			let n_color = ntc.name(findColor([imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]]))[1];
+			let rgb = [imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]];
+			let n_color = ntc.name(findColor(rgb))[1];
 			//console.log(n_color);
-			document.getElementById("color").style.backgroundColor = findColor([imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]]);
-			console.log("hue: ", getExactHue(getHue([imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]]), [imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3],calcLightness() )], "\ncolor: ", n_color);
+			document.getElementById("color").style.backgroundColor = findColor(rgb);
+			console.log("hue: ", getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb)), "\ncolor: ", n_color);
 			//context.putImageData(imgData, 315, 235);
 		}
 		window.onload = videoSetup().then(videoFeed()).then(setInterval(colorStuff, 1000));

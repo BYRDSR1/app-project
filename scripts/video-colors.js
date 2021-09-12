@@ -139,7 +139,7 @@ const hueToColor = (hue) => {
 	} else if(hue <= 360) {
 		return "Red";
 	} else {
-		throw new Error("Color hue not Found");
+		throw new Error("Color hue not Found", hue);
 	}
 }
 
@@ -186,12 +186,12 @@ const findShade = (rgb) => {
 
 /* End Monochrome Hue Functions */
 
-const getExactHue = (hue, lightness) => {
-  if(lightness <= 158 && lightness >= 94) {
+const getExactHue = (hue, lightness, isShade) => {
+  if((lightness <= 158 && lightness >= 94) || isShade) {
     return hue;
   } else if(lightness > 158) {
   	//Lighter hues
-	return ("Light " + hue);
+	  return ("Light " + hue);
   } else if(lightness < 94) {
 	  //Darker hues
 	  switch(hue) {
