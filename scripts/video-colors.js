@@ -187,7 +187,7 @@ const findShade = (rgb) => {
 /* End Monochrome Hue Functions */
 
 const getExactHue = (hue, lightness, isShade) => {
-  if((lightness <= 158 && lightness >= 94) || isShade) {
+ if((lightness <= 158 && lightness >= 110) || isShade) {
     return hue;
   } else if(lightness > 158) {
   	//Lighter hues
@@ -264,7 +264,7 @@ const getExactHue = (hue, lightness, isShade) => {
 			  throw new Error("Light hue not determined" + ", " + hue);
 			  break;
 	  }
-  } else if(lightness < 94) {
+  } else if(lightness < 110) {
 	  //Darker hues
 	  switch(hue) {
 		  case "Red":
