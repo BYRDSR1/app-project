@@ -6,7 +6,7 @@
 &nbsp;&nbsp;As of now, there is only a working prototype of the color recognition functionality in /index.html. Open said file in a browser and open developer tools by pressing ```Ctrl-I``` or by right clicking and selecting "Inspect".
 
 ## Documentation
-&nbsp;&nbsp;Documentation (here)["https://github.com/BYRDSR1/app-project/wiki"]
+&nbsp;&nbsp;Documentation [here]("https://github.com/BYRDSR1/app-project/wiki")
 
 ## Contributing
 &nbsp;&nbsp;Currently, this is a solo-project.
