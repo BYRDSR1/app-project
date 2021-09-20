@@ -82,13 +82,18 @@
 		<script>
 			const adjustHomepageUtils = () => {
 				const width = document.documentElement.clientWidth;
-				const utils = document.getElementsById("homepage-utils");
+				const utils = document.getElementById("homepage-utils");
 				if(width < 493) {
 					utils.classList.contains("justify-content-around") ? null : (() => {
-						utils.classList.contains("justify-content-center") ? utils.classList.remove() //RESUME HERE
+						utils.classList.contains("justify-content-center") ? (()=>{
+							utils.classList.remove("justify-content-center");
+							utils.classList.add("justify-content-around");
+						})()
+						: utils.classList.add("justify-content-around");
 					})();
 				} else {
-					utils.classList.contains("justify-content-center
+					//RESUME HERE
+					//utils.classList.contains("justify-content-center
 				}			
 			}
 			document.onload = () => {adjustHomepageUtils()}
