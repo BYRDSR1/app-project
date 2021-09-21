@@ -46,23 +46,24 @@
 		<script>
 			const openSettings = () => {
 				document.getElementById("homepage-wrapper").hidden = true;
+				document.getElementById("video-wrapper").hidden = false;
 			}
 		</script>
 	</head>
 	<body class="h-100">
 		<div id="outer-wrapper" class="w-100 h-100 d-flex container-fluid justify-content-center">
-			<div hidden="true" id="video-wrapper">
+			<div hidden="true" id="picture-wrapper">
 			
 
 			</div>
-			<div id="homepage-wrapper" class="w-100 h-100 d-flex justify-content-center container-fluid">
+			<div id="homepage-wrapper" class="w-100 h-100 d-flex justify-content-center container-fluid" hidden="false">
 				<div id="top-button"class="py-3 h-30 navbar navbar-nav fixed-top justify-content-center">
 					<i class="far fa-image fa-2x"></i>
 				</div>
 				<div id="homepage-main" class= "w-100 py-5 row flex-row justify-content-center align-self-center">
 					<div id="homepage-main-content" class="w-100 h-100 py-3 flex-row justify-content-center align-self-center align-content-around">
 						<div id="homepage-name" class="h-50">
-							<h1 class="text-center">App Name</h1>
+							<h1 class="text-center">Khroma</h1>
 						</div>
 						<br />
 						<div id="homepage-utils" class="d-flex container h-50 flex-row justify-content-around">
@@ -75,12 +76,12 @@
 						</div>
 					</div>
 				</div>
-				<div id="bottom-button" class="py-3 h-30 navbar navbar-nav fixed-bottom justify-content-center">
+				<div id="bottom-button" class="py-3 h-30 navbar navbar-nav fixed-bottom justify-content-center" onclick="openSettings()">
 					<i class="fas fa-camera fa-2x"></i>
 				</div>
 			</div>
-			<div hidden="true" id="video-wrapper">
-			
+			<div hidden="true" style="z-index:2" id="video-wrapper">
+				<h1>Hello, world!</h1>
 
 			</div>
 		</div>
