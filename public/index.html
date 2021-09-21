@@ -43,6 +43,11 @@
 				padding-bottom: 2rem !important;
 			}
 		</style>
+		<script>
+			const openSettings = () => {
+				document.getElementById("homepage-wrapper").hidden = true;
+			}
+		</script>
 	</head>
 	<body class="h-100">
 		<div id="outer-wrapper" class="w-100 h-100 d-flex container-fluid justify-content-center">
@@ -61,11 +66,11 @@
 						</div>
 						<br />
 						<div id="homepage-utils" class="d-flex container h-50 flex-row justify-content-around">
-							<div id="homepage-help" class="">
-								<i class="fas fa-question fa-2x"></i>
+							<div id="homepage-help" class="flex-fill">
+								<i class="fas fa-question fa-2x d-flex justify-content-center"></i>
 							</div>
-							<div id="homepage-settings" class="">
-								<i class="fas fa-cog fa-2x"></i>
+							<div id="homepage-settings" class="flex-fill">
+								<i class="fas fa-cog fa-2x d-flex justify-content-center" onclick="openSettings()"></i>
 							</div>
 						</div>
 					</div>
@@ -91,12 +96,20 @@
 						})()
 						: utils.classList.add("justify-content-around");
 					})();
+					utils.classList.contains("w-50") ? utils.classList.remove("w-50") : null;
 				} else {
 					//RESUME HERE
-					//utils.classList.contains("justify-content-center
+					utils.classList.contains("justify-content-center") ? null : (() => {
+						utils.classList.contains("justify-content-around") ? (() => {
+							utils.classList.remove("justify-content-around");
+							utils.classList.add("justify-content-center");
+						})()
+						: utils.classList.add("justify-content-center");
+					})();
+					utils.classList.contains("w-50") ? null : utils.classList.add("w-50");
 				}			
 			}
-			document.onload = () => {adjustHomepageUtils()}
+			window.addEventListener("DOMContentLoaded", adjustHomepageUtils);
 			document.body.onresize = () => {adjustHomepageUtils()}
 
 		</script>
