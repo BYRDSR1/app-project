@@ -15,6 +15,7 @@
 		<!-- End Bootstrap CDN -->
 		<!-- FontAwesome -->
 		<script src="https://kit.fontawesome.com/5a58bd0200.js" crossorigin="anonymous"></script>
+		<script src="../scripts/content.js" defer></script>
 		<style>
 			@media (prefers-color-scheme: light) {
 				body {
@@ -44,10 +45,9 @@
 			}
 		</style>
 		<script>
-			const openSettings = () => {
-				document.getElementById("homepage-wrapper").hidden = true;
-				document.getElementById("video-wrapper").hidden = false;
-			}
+			const openVideo = () => {
+				switchPage("videopage");
+			} 
 		</script>
 	</head>
 	<body class="h-100">
@@ -76,7 +76,7 @@
 						</div>
 					</div>
 				</div>
-				<div id="bottom-button" class="py-3 h-30 navbar navbar-nav fixed-bottom justify-content-center" onclick="openSettings()">
+				<div id="bottom-button" class="py-3 h-30 navbar navbar-nav fixed-bottom justify-content-center" onclick="openVideo()">
 					<i class="fas fa-camera fa-2x"></i>
 				</div>
 			</div>
@@ -85,7 +85,7 @@
 
 			</div>
 		</div>
-		<script>
+		<script id="utils-script">
 			const adjustHomepageUtils = () => {
 				const width = document.documentElement.clientWidth;
 				const utils = document.getElementById("homepage-utils");
