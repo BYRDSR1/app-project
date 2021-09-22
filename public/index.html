@@ -19,7 +19,7 @@
 		<style>
 			@media (prefers-color-scheme: light) {
 				body {
-					background-color: #F2F2F2;
+					background-color: #F0F0F0;
 					color: black;
 				}
 				.navbar {
@@ -44,6 +44,15 @@
 				padding-bottom: 2rem !important;
 			}
 		</style>
+		<script>
+			window.onload = () => {
+				if(navigator.onLine) {
+					//toggleIcons(true);
+				} else {
+					//toggleIcons(false)
+				}
+			}
+		</script>
 		<script>
 			const openVideo = () => {
 				switchPage("videopage");
@@ -110,6 +119,7 @@
 					utils.classList.contains("w-50") ? null : utils.classList.add("w-50");
 				}			
 			}
+			window.onload = () => { switchPage("homepage"); };
 			window.addEventListener("DOMContentLoaded", adjustHomepageUtils);
 			document.body.onresize = () => {adjustHomepageUtils()}
 
