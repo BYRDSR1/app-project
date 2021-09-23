@@ -28,3 +28,16 @@ const switchPage = (page) => {
 	}  
 }
 
+const toggleIcons = (online) => {
+	if(!online) {
+		const picBar = document.getElementById("top-button"),
+			vidBar = document.getElementById("bottom-button"),
+			help = document.getElementById("homepage-help"),
+			settings = document.getElementById("homepage-settings");
+			let elements = [picBar, vidBar, help, settings];
+			elements.forEach((element) => {
+				element.removeChild(element.children[0]);
+			});
+			picBar.insertAdjacentHTML("afterbegin", '<img src="../fonts/camera-solid.svg" />');
+	}
+}
