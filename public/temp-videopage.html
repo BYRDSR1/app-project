@@ -16,7 +16,10 @@
 		<!-- FontAwesome -->
 		<!--<script src="https://kit.fontawesome.com/5a58bd0200.js" crossorigin="anonymous"></script>-->
 		<link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.css" />
+		<!--content.js-->
 		<script src="../scripts/content.js" defer></script>
+		<!-- video functions -->
+		<script src="../scripts/video-colors.js"></script>
 		<style>
 			@media (prefers-color-scheme: light) {
 				body {
@@ -56,12 +59,11 @@
 				switchPage("videopage");
 			}
 		</script>
-		
 	</head>
 	<body class="h-100">
 		<div id="outer-wrapper" class="w-100 h-100 d-flex container-fluid justify-content-center">
 			<div id="video-wrapper" class="w-100 h-100 d-flex justify-content-center container-fluid">
-				<div id="video-top-button" class="py-3 h-30 navbar navbar-nav fixed-top justify-content-center" onclick="">
+				<div id="video-top-button" class="py-3 h-30 navbar navbar-nav fixed-top justify-content-center" onclick="openHome()">
 					<i class="fas fa-home fa-2x"></i>
 				</div>
 				<div id="video-main" class= "w-100 py-5 row flex-row justify-content-center align-self-center">

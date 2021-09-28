@@ -3,11 +3,15 @@ const videoSetup = async () => {
 		const wrapper = document.getElementById("video-main");
 		const video = document.createElement("video");
 		video.id = "video";
-		video.width = documment.documentElement.clientWidth;
+		video.width = document.documentElement.clientWidth;
 		video.height = document.documentElement.clientHeight;
 		video.autoplay = true;
 		wrapper.appendChild(video);
 	}
+}
+
+const errBack = () => {
+	console.log("Uh oh");
 }
 
 const videoFeed = () => {
