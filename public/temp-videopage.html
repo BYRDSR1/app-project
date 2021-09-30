@@ -41,12 +41,12 @@
 				}
 			}
 
-			@media (only screen and (max-width: 
+			/*@media (only screen and (max-width: 
 
 			.py-3 {
 				padding-top: 2rem !important;
 				padding-bottom: 2rem !important;
-			}
+			}*/
 		</style>
 		<script>
 			const openVideo = () => {
@@ -59,19 +59,6 @@
 				switchPage("videopage");
 			}
 		</script>
-		<script>
-			const startVideoStuff = () => {
-				videoSetup().then(videoFeed()).then(setInterval(()=>{console.log("hi");}, 1000));
-			}
-			const observer = new MutationObserver((mutations_list)=>{
-				mutations_list.forEach((mutation)=>{
-					mutation.addedNodes.forEach((added_node)=>{
-						//https://usefulangle.com/post/356/javascript-detect-element-added-to-dom
-						added_node_id == 'child' ? console.log(
-					});
-				});
-			});
-		</script>
 	</head>
 	<body class="h-100">
 		<div id="outer-wrapper" class="w-100 h-100 d-flex container-fluid justify-content-center">
@@ -79,7 +66,7 @@
 				<div id="video-top-button" class="py-3 h-30 navbar navbar-nav fixed-top justify-content-center" onclick="openHome()">
 					<i class="fas fa-home fa-2x"></i>
 				</div>
-				<div id="video-main" class= "w-100 py-5 row flex-row justify-content-center align-self-center" onload="startVideoStuff()">
+				<div id="video-main" class= "w-100 py-5 row flex-row justify-content-center align-self-center" >
 					<canvas id="canvas" width="640" height="480" hidden ></canvas>
 					
 				</div>
@@ -116,6 +103,13 @@
 			window.addEventListener("DOMContentLoaded", adjustHomepageUtils);
 			document.body.onresize = () => {adjustHomepageUtils()}
 
+		</script>
+		<script>
+			const startVideoStuff = () => {
+				videoSetup().then(videoFeed()).then(setInterval(()=>{console.log("hi");}, 1000));
+			}
+
+			document.getElementById("video-main").addEventListener("load", startVideoStuff);
 		</script>
 	</body>
 </html>
