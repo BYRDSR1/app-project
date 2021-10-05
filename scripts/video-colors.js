@@ -368,3 +368,6 @@ const getHue = (rgb) => {
 const findColor = (rgba) => {
 	return convertRGBAToHex(rgba)[0];
 }
+
+
+//export { videoSetup };

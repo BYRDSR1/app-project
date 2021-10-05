@@ -1,6 +1,8 @@
+//import { videoSetup } from './video-colors.js';
+
 pictureContent = "";
 
-homeContentOnline = '<div id="homepage-wrapper" class="w-100 h-100 d-flex justify-content-center container-fluid" hidden="false"><div id="top-button"class="py-3 h-30 navbar navbar-nav fixed-top justify-content-center"><i class="far fa-image fa-2x"></i></div><div id="homepage-main" class= "w-100 py-5 row flex-row justify-content-center align-self-center"><div id="homepage-main-content" class="w-100 h-100 py-3 flex-row justify-content-center align-self-center align-content-around"><div id="homepage-name" class="h-50"><h1 class="text-center">Khroma</h1></div><br /><div id="homepage-utils" class="d-flex container h-50 flex-row justify-content-around"><div id="homepage-help" class="flex-fill"><i class="fas fa-question fa-2x d-flex justify-content-center"></i></div><div id="homepage-settings" class="flex-fill"><i class="fas fa-cog fa-2x d-flex justify-content-center" onclick="openSettings()"></i></div></div></div></div><div id="bottom-button" class="py-3 h-30 navbar navbar-nav fixed-bottom justify-content-center" onclick="openVideo()"><i class="fas fa-camera fa-2x"></i></div></div>';
+homeContent = '<div id="homepage-wrapper" class="w-100 h-100 d-flex justify-content-center container-fluid" hidden="false"><div id="top-button"class="py-3 h-30 navbar navbar-nav fixed-top justify-content-center"><i class="far fa-image fa-2x"></i></div><div id="homepage-main" class= "w-100 py-5 row flex-row justify-content-center align-self-center"><div id="homepage-main-content" class="w-100 h-100 py-3 flex-row justify-content-center align-self-center align-content-around"><div id="homepage-name" class="h-50"><h1 class="text-center">Khroma</h1></div><br /><div id="homepage-utils" class="d-flex container h-50 flex-row justify-content-around"><div id="homepage-help" class="flex-fill"><i class="fas fa-question fa-2x d-flex justify-content-center"></i></div><div id="homepage-settings" class="flex-fill"><i class="fas fa-cog fa-2x d-flex justify-content-center" onclick="openSettings()"></i></div></div></div></div><div id="bottom-button" class="py-3 h-30 navbar navbar-nav fixed-bottom justify-content-center" onclick="openVideo()"><i class="fas fa-camera fa-2x"></i></div></div>';
 
 videoContent = '<div id="video-wrapper" class="w-100 h-100 d-flex justify-content-center container-fluid"> <div id="video-top-button" class="py-3 h-30 navbar navbar-nav fixed-top justify-content-center" onclick="openHome()"> <i class="fas fa-home fa-2x"></i> </div> <div id="video-main" class= "w-100 py-5 row flex-row justify-content-center align-self-center" > <canvas id="canvas" width="640" height="480" hidden ></canvas> </div> </div>' ;
 
@@ -8,7 +10,7 @@ utilsScript = '<script id="utils-script" >const adjustHomepageUtils = () => {con
 
 const switchPage = (page) => {
 	const wrapper = document.getElementById("outer-wrapper");
-		
+	const currPage = wrapper.children[0].id;
 	wrapper.children ? (() => {
 		j = wrapper.children.length;
 		for(let i = 0; i < j; i++) {
@@ -17,13 +19,23 @@ const switchPage = (page) => {
 		//document.getElementById("setup") ? document.body.removeChild(document.getElementById("setup")) : null;
 	})() : null;
 	if(page === "homepage") {
-		wrapper.insertAdjacentHTML("afterbegin", homeContentOnline);
+		wrapper.insertAdjacentHTML("afterbegin", homeContent);
 		//wrapper.insertAdjacentHTML("afterend", utilsScript);
 	} else if(page === "videopage") {
 		wrapper.insertAdjacentHTML("afterbegin", videoContent);
+		videoSetup().then(videoFeed())
 	} else if(page === "picturepage") {
 		wrapper.insertAdjacentHTML("afterbegin", pictureContent);
 	} else {
+		if(currPage === "homepage-wrapper") {
+			wrapper.insertAdjacentHTML("afterbegin", homeContent);
+		} else if(currPage === "video-wrapper") {
+			wrapper.insertAdjacentHTML("afterbegin", videoContent);
+		} else if(currPage == "picture-wrapper") {
+			wrapper.insertAdjacentHTML("afterbegin", pictureContent);
+		} else {
+			throw new Error("You aren't on a valid page");
+		}
 		throw new Error("Invalid Page Request");
 	}  
 }
