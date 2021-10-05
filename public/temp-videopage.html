@@ -69,8 +69,8 @@
 				<div id="video-main" class= "w-100 py-5 row flex-row justify-content-center align-self-center" >
 					<canvas id="canvas" width="640" height="480" hidden ></canvas>
 				</div>
-				<div id="video-bottom-bar" class="py-3 h-30 navbar navbar-nav fixed-bottom justify-content-center">
-					
+				<div id="video-bottom-bar" class="font-weight-bold py-3 h-30 navbar navbar-nav fixed-bottom justify-content-center">
+					<p class="font-weight-bold"></p>
 				</div>
 			</div>
 		</div>
@@ -102,8 +102,12 @@
 				} else if(document.getElementById("video-wrapper")) {
 					const video = document.getElementById("video");
 					const canvas = document.getElementById("canvas");
-					video.width = canvas.width = width;
-					video.height = canvas.height = height;
+					//ratio is 3/4, w/h
+					video.width = width;
+					video.height = (3 / 4) * width;
+					//video.height = video.videoHeight;
+					/*canvas.width = video.videoWidth;
+					canvas.height = video.videoHeight; */
 				}
 			}
 			window.addEventListener("DOMContentLoaded", adjustHomepageUtils);

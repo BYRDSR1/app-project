@@ -374,7 +374,8 @@ const identifyColor = (rgb) => {
 			//console.log(n_color);
 			//document.getElementById("color").style.backgroundColor = findColor(rgb);
 			console.log("hue: ", getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb)));
-			document.getElementById("video-bottom-bar").innerHTML = getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb));
+			document.getElementById("video-bottom-bar").children[0].innerHTML = getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb));
+			//document.body.style.backgroundColor = "rgb(" + rgb[0]+ ", " + rgb[1] + ", " + rgb[2] + ")";
 } 
 
 const colorStuff = () => {
