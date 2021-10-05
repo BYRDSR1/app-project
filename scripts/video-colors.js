@@ -374,11 +374,11 @@ const identifyColor = (rgb) => {
 			//console.log(n_color);
 			//document.getElementById("color").style.backgroundColor = findColor(rgb);
 			console.log("hue: ", getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb)));
-			//document.getElementById("video-bottom-bar").innerHTML = getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb)));
+			document.getElementById("video-bottom-bar").innerHTML = getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb));
 } 
 
 const colorStuff = () => {
-			if(document.getElementById("videopage-wrapper")) {
+			if(document.getElementById("video-wrapper")) {
 				
 			
 				const canvas = document.getElementById('canvas');
@@ -387,10 +387,14 @@ const colorStuff = () => {
 				context.drawImage(video, 0, 0, canvas.width, canvas.height);
 				//get image data from a 10px x 10px space
 				//middle is 315 from left, and 235 down
-				const imgData = context.getImageData(315,235,10, 10);
+				width = document.documentElement.clientWidth;
+				height = document.documentElement.clientHeight;
+				const imgData = context.getImageData(((width - 10) / 2), ((height - 10) / 2), 10, 10);
 				//console.log(imgData);
 				let rgb = [imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]];
 				identifyColor(rgb);
 				//context.putImageData(imgData, 315, 235);
-			} 
+			}else {
+				console.log("nope")
+			}
 }
