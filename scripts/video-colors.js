@@ -369,5 +369,28 @@ const findColor = (rgba) => {
 	return convertRGBAToHex(rgba)[0];
 }
 
+const identifyColor = (rgb) => {
+			//let n_color = ntc.name(findColor(rgb))[1];
+			//console.log(n_color);
+			//document.getElementById("color").style.backgroundColor = findColor(rgb);
+			console.log("hue: ", getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb)));
+			//document.getElementById("video-bottom-bar").innerHTML = getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb)));
+} 
 
-//export { videoSetup };
+const colorStuff = () => {
+			if(document.getElementById("videopage-wrapper")) {
+				
+			
+				const canvas = document.getElementById('canvas');
+				const context = canvas.getContext('2d');
+				const video = document.getElementById('video');
+				context.drawImage(video, 0, 0, canvas.width, canvas.height);
+				//get image data from a 10px x 10px space
+				//middle is 315 from left, and 235 down
+				const imgData = context.getImageData(315,235,10, 10);
+				//console.log(imgData);
+				let rgb = [imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]];
+				identifyColor(rgb);
+				//context.putImageData(imgData, 315, 235);
+			} 
+}

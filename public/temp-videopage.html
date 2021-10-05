@@ -68,14 +68,17 @@
 				</div>
 				<div id="video-main" class= "w-100 py-5 row flex-row justify-content-center align-self-center" >
 					<canvas id="canvas" width="640" height="480" hidden ></canvas>
+				</div>
+				<div id="video-bottom-bar" class="py-3 h-30 navbar navbar-nav fixed-bottom justify-content-center">
 					
 				</div>
 			</div>
 		</div>
 		<script id="utils-script">
 			const adjustHomepageUtils = () => {
+				const width = document.documentElement.clientWidth;
+				const height = document.documentElement.clientHeight;
 				if(document.getElementById("homepage-wrapper")) {
-					const width = document.documentElement.clientWidth;
 					const utils = document.getElementById("homepage-utils");
 					if(width < 493) {
 						utils.classList.contains("justify-content-around") ? null : (() => {
@@ -97,19 +100,15 @@
 						utils.classList.contains("w-50") ? null : utils.classList.add("w-50");
 					}		
 				} else if(document.getElementById("video-wrapper")) {
-					console.log("Hi")
+					const video = document.getElementById("video");
+					const canvas = document.getElementById("canvas");
+					video.width = canvas.width = width;
+					video.height = canvas.height = height;
 				}
 			}
 			window.addEventListener("DOMContentLoaded", adjustHomepageUtils);
 			document.body.onresize = () => {adjustHomepageUtils()}
 
-		</script>
-		<script>
-			const startVideoStuff = () => {
-				videoSetup().then(videoFeed()).then(setInterval(()=>{console.log("hi");}, 1000));
-			}
-
-			document.getElementById("video-main").addEventListener("load", startVideoStuff);
 		</script>
 	</body>
 </html>
