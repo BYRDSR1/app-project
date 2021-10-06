@@ -11,6 +11,7 @@ utilsScript = '<script id="utils-script" >const adjustHomepageUtils = () => {con
 const switchPage = (page) => {
 	//getColor = 0;
 	//getColor ? clearInterval(getColor) : null;
+	intervalID ? stopInterval() : null;
 	const wrapper = document.getElementById("outer-wrapper");
 	const currPage = wrapper.children[0].id;
 	wrapper.children ? (() => {

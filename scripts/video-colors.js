@@ -1,3 +1,5 @@
+let intervalID = undefined;
+
 const videoSetup = async () => {
 	if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 		const wrapper = document.getElementById("video-main");
@@ -22,7 +24,7 @@ const videoFeed = () => {
         //video.src = window.URL.createObjectURL(stream);
         video.srcObject = stream;
         video.play();
- 	setInterval(colorStuff, 1000);	
+ 	intervalID = setInterval(colorStuff, 1000);	
     }, errBack);
 	} else if(navigator.getUserMedia) { // Standard
     navigator.getUserMedia({ video: true }, function(stream) {
@@ -41,6 +43,11 @@ const videoFeed = () => {
     }, errBack);
 	}
 
+}
+
+const stopInterval = () => {
+	clearInterval(intervalID);
+	intervalID = undefined;
 }
 
 const convertNumberToHex = (num) => {
