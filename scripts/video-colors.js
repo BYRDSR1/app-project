@@ -7,7 +7,7 @@ const videoSetup = async () => {
 		video.height = document.documentElement.clientHeight;
 		video.autoplay = true;
 		wrapper.appendChild(video);
-	}
+	} 
 }
 
 const errBack = () => {
@@ -22,7 +22,8 @@ const videoFeed = () => {
         //video.src = window.URL.createObjectURL(stream);
         video.srcObject = stream;
         video.play();
-    });
+ 	setInterval(colorStuff, 1000);	
+    }, errBack);
 	} else if(navigator.getUserMedia) { // Standard
     navigator.getUserMedia({ video: true }, function(stream) {
         video.src = stream;

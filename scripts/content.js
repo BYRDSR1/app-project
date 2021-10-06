@@ -22,12 +22,11 @@ const switchPage = (page) => {
 	})() : null;
 	if(page === "homepage") {
 		wrapper.insertAdjacentHTML("afterbegin", homeContent);
-		//wrapper.insertAdjacentHTML("afterend", utilsScript);
 	} else if(page === "videopage") {
 		wrapper.insertAdjacentHTML("afterbegin", videoContent);
-		videoSetup().then(videoFeed()).then(setInterval(colorStuff, 1000));
+		videoSetup().then(videoFeed())
+			//.then(setInterval(colorStuff, 1000));
 		adjustHomepageUtils();
-		//setInterval(colorStuff, 1000);
 	} else if(page === "picturepage") {
 		wrapper.insertAdjacentHTML("afterbegin", pictureContent);
 	} else {
