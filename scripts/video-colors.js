@@ -208,9 +208,9 @@ const findShade = (rgb) => {
 /* End Monochrome Hue Functions */
 
 const getExactHue = (hue, lightness, isShade) => {
- if((lightness <= 158 && lightness >= 100) || isShade) {
+ if((lightness <= 140 && lightness >= 95) || isShade) {
     return hue;
-  } else if(lightness > 158) {
+  } else if(lightness > 140) {
   	//Lighter hues
 	  switch(hue) {
 		  case "Red":
@@ -285,7 +285,7 @@ const getExactHue = (hue, lightness, isShade) => {
 			  throw new Error("Light hue not determined" + ", " + hue);
 			  break;
 	  }
-  } else if(lightness < 100) {
+  } else if(lightness < 95) {
 	  //Darker hues
 	  switch(hue) {
 		  case "Red":
@@ -389,7 +389,7 @@ const identifyColor = (rgb) => {
 			//let n_color = ntc.name(findColor(rgb))[1];
 			//console.log(n_color);
 			//document.getElementById("color").style.backgroundColor = findColor(rgb);
-			console.log("hue: ", getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb)));
+			console.log("hue: ", getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb)), calcLightness(rgb));
 			document.getElementById("video-bottom-bar").children[0].innerHTML = getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb));
 			
 			document.body.style.backgroundColor = "rgb(" + rgb[0]+ ", " + rgb[1] + ", " + rgb[2] + ")";
@@ -407,11 +407,11 @@ const colorStuff = () => {
 				//get image data from a 10px x 10px space
 				//middle is 315 from left, and 235 down
 				
-				const imgData = context.getImageData((video.width - 10), (video.height - 10), 5, 5);
+				const imgData = context.getImageData(((640-15) / 2), ((480-15)/2), 15, 15);
 				//console.log(imgData);
 				let rgb = [imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]];
 				context.fillStyle = "red";
-				context.fillRect((video.width - 10), (video.height - 10), 15, 15)
+				context.fillRect(((640-15) / 2), ((480-15)/2), 15, 15)
 				//context.stroke()
 				identifyColor(rgb);
 				//context.putImageData(imgData, 315, 235);
