@@ -13,7 +13,7 @@ const videoSetup = async () => {
 }
 
 const errBack = () => {
-	document.getElementById("video-main").insertAdjacentHTML("afterbegin", "<h4>Sorry, You Need to Enable Camera Access in Settings</h4>");
+	document.getElementById("video-main").insertAdjacentHTML("afterbegin", '<div class="w-100 h-100 row flex-row align-self-center justify-content-center"><h4 class="align-self-center text-center font-weight-bold">Sorry, You Need to Enable Camera Access in Settings</h4></div>');
 	document.getElementById("video-bottom-bar").children[0].insertAdjacentHTML("afterbegin", '<i class="far fa-frown fa-2x"></i>');
 	//switchPage("homepage");
 }
@@ -22,6 +22,7 @@ const videoFeed = () => {
 	const video = document.getElementById("video");
 	if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     // Not adding `{ audio: true }` since we only want video now
+	let constraints = navigator
     navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
         //video.src = window.URL.createObjectURL(stream);
         video.srcObject = stream;
