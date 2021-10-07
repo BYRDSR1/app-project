@@ -13,7 +13,9 @@ const videoSetup = async () => {
 }
 
 const errBack = () => {
-	console.log("Uh oh");
+	document.getElementById("video-main").innerHTML = "Sorry, You Need to Enable Camera Access in Settings";
+	document.getElementById("video-bottom-bar").children[0].insertAdjacentHTML("afterbegin", '<i class="far fa-frown fa-2x"></i>');
+	//switchPage("homepage");
 }
 
 const videoFeed = () => {
