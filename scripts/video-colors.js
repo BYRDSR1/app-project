@@ -13,7 +13,7 @@ const videoSetup = async () => {
 }
 
 const errBack = () => {
-	document.getElementById("video-main").innerHTML = "Sorry, You Need to Enable Camera Access in Settings";
+	document.getElementById("video-main").insertAdjacentHTML("afterbegin", "<h4>Sorry, You Need to Enable Camera Access in Settings</h4>");
 	document.getElementById("video-bottom-bar").children[0].insertAdjacentHTML("afterbegin", '<i class="far fa-frown fa-2x"></i>');
 	//switchPage("homepage");
 }
@@ -26,6 +26,11 @@ const videoFeed = () => {
         //video.src = window.URL.createObjectURL(stream);
         video.srcObject = stream;
         video.play();
+				if(window.matchMedia("(prefers-color-scheme: dark)").matches) {
+					document.getElementById("video-main").insertAdjacentHTML("afterbegin", '<img src="../images/crosshairs-light.png" class="img-fluid align-self-center" style="position: absolute;z-index: 3" />');
+				} else {
+					document.getElementById("video-main").insertAdjacentHTML("afterbegin", '<img src="../images/crosshairs-dark.png" class="img-fluid align-self-center" style="position: absolute;z-index: 3" />');
+				}
  	intervalID = setInterval(colorStuff, 1000);	
     }, errBack);
 	} else if(navigator.getUserMedia) { // Standard
@@ -385,7 +390,8 @@ const identifyColor = (rgb) => {
 			//document.getElementById("color").style.backgroundColor = findColor(rgb);
 			console.log("hue: ", getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb)));
 			document.getElementById("video-bottom-bar").children[0].innerHTML = getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb));
-			//document.body.style.backgroundColor = "rgb(" + rgb[0]+ ", " + rgb[1] + ", " + rgb[2] + ")";
+			
+			document.body.style.backgroundColor = "rgb(" + rgb[0]+ ", " + rgb[1] + ", " + rgb[2] + ")";
 } 
 
 const colorStuff = () => {
@@ -396,13 +402,16 @@ const colorStuff = () => {
 				const context = canvas.getContext('2d');
 				const video = document.getElementById('video');
 				context.drawImage(video, 0, 0, canvas.width, canvas.height);
+				
 				//get image data from a 10px x 10px space
 				//middle is 315 from left, and 235 down
-				width = document.documentElement.clientWidth;
-				height = document.documentElement.clientHeight;
-				const imgData = context.getImageData(((width - 10) / 2), ((height - 10) / 2), 10, 10);
+				
+				const imgData = context.getImageData((video.width - 10), (video.height - 10), 5, 5);
 				//console.log(imgData);
 				let rgb = [imgData.data[0], imgData.data[1], imgData.data[2], imgData.data[3]];
+				context.fillStyle = "red";
+				context.fillRect((video.width - 10), (video.height - 10), 15, 15)
+				//context.stroke()
 				identifyColor(rgb);
 				//context.putImageData(imgData, 315, 235);
 			}else {
