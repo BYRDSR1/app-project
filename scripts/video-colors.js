@@ -22,9 +22,25 @@ const videoFeed = () => {
 	const video = document.getElementById("video");
 	if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     // Not adding `{ audio: true }` since we only want video now
-	let constraints = navigator
-    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+	let videoOptions = [];
+	navigator.mediaDevices.enumerateDevices().then((devices)=>{
+		devices.forEach((device)=>{
+			device.kind === "videoinput" ? videoOptions.push(device) : null;		
+		});
+	});
+	let constraints = {
+		video: {}
+	}
+
+	if(videoOptions.length > 1) {
+		constraints.video.facingMode = {ideal: 'environment'}
+	} else {
+		constraints.video = true;
+	}
+
+    navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
         //video.src = window.URL.createObjectURL(stream);
+	
         video.srcObject = stream;
         video.play();
 				if(window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -392,7 +408,7 @@ const identifyColor = (rgb) => {
 			console.log("hue: ", getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb)), calcLightness(rgb));
 			document.getElementById("video-bottom-bar").children[0].innerHTML = getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb));
 			
-			document.body.style.backgroundColor = "rgb(" + rgb[0]+ ", " + rgb[1] + ", " + rgb[2] + ")";
+			//document.body.style.backgroundColor = "rgb(" + rgb[0]+ ", " + rgb[1] + ", " + rgb[2] + ")";
 } 
 
 const colorStuff = () => {
