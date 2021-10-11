@@ -76,7 +76,7 @@ const stopInterval = () => {
 	intervalID = undefined;
 }
 
-const convertNumberToHex = (num) => {
+/* const convertNumberToHex = (num) => {
 	if(num > 9) {
 		switch(num) {
 			case 10:
@@ -124,6 +124,33 @@ const convertRGBAToHex = (rgba) => {
 		}
 	}
 	return rgba[3] ? [hex, rgba[3]] : [hex];
+} */
+
+let debateableColors = {
+	mOrB: [
+		
+	],
+}
+
+const determineDebateableColor = (color) => {
+	if(color == "Maroon" || color == "Brown") {
+		if(debateableColors.mOrB[0]) {
+			let browns = maroons = 0;
+			for(let i = 0; i < debateableColors.mOrB.length; i++) {
+				if(debateableColors.mOrB[i] == "brown") {
+					browns++;
+				} else {
+					maroons++;
+				}
+			}
+			console.log(browns, maroons)
+			debateableColors.mOrB.length < 10 ? debateableColors.mOrB.push(color.toLowerCase()) : (()=>{debateableColors.mOrB.shift();debateableColors.mOrB.push(color.toLowerCase())})();
+			return browns >= maroons ? "Brown" : "Maroon";
+		} else {
+			debateableColors.mOrB.push(color.toLowerCase());
+			return color;
+		}
+	} 
 }
 
 const hueToColor = (hue) => {
@@ -307,13 +334,13 @@ const getExactHue = (hue, lightness, isShade) => {
 	  //Darker hues
 	  switch(hue) {
 		  case "Red":
-			  return "Maroon";
+			  return determineDebateableColor("Maroon");
 			  break;
 		  case "Orange-Red":
-			  return "Brown";
+			  return determineDebateableColor("Brown");
 			  break;
 		  case "Orange":
-			  return "Brown";
+			  return determineDebateableColor("Brown");
 			  break;
 		  case "Khaki":
 			  return "Golden Brown";
@@ -370,10 +397,10 @@ const getExactHue = (hue, lightness, isShade) => {
 			  return "Dark Magenta";
 			  break;
 		  case "Bright Pink":
-			  return "Maroon";
+			  return determineDebateableColor("Maroon");
 			  break;
 		  case "Scarlet":
-			  return "Maroon";
+			  return determineDebateableColor("Maroon");
 		  default:
 			  throw new Error("Dark hue not determined" + ", " + hue);
 			  break;
@@ -395,6 +422,7 @@ const getHue = (rgb) => {
 		while(degHue < 0) {
 			degHue += 360;
 		}
+		//console.log(degHue)
 		return hueToColor(degHue);
 	} 
 }
@@ -406,11 +434,11 @@ const findColor = (rgba) => {
 const identifyColor = (rgb) => {
 			//let n_color = ntc.name(findColor(rgb))[1];
 			//console.log(n_color);
-			//document.getElementById("color").style.backgroundColor = findColor(rgb);
-			console.log("hue: ", getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb)), calcLightness(rgb));
+			//console.log("hue: ", getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb)), "\nlightness: ", calcLightness(rgb), "\nrough hue: ", getHue(rgb), "\nred: ", rgb[0], " green: ", rgb[1], " blue: ", rgb[2]);
+			getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb)) !== "Maroon" || getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb)) !== "Brown" ? debateableColors.mOrB = [] : null;
 			document.getElementById("video-bottom-bar").children[0].innerHTML = getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb));
 			
-			//document.body.style.backgroundColor = "rgb(" + rgb[0]+ ", " + rgb[1] + ", " + rgb[2] + ")";
+			document.body.style.backgroundColor = "rgb(" + rgb[0]+ ", " + rgb[1] + ", " + rgb[2] + ")";
 } 
 
 const colorStuff = () => {
