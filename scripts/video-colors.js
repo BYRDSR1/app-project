@@ -31,16 +31,14 @@ const videoFeed = () => {
 		});
 	});
 	let constraints = {
-		video: {}
+		video: {
+			facingMode: {
+				ideal: 'environment'
+			}
+		}
 	}
 
-	if(videoOptions.length > 1) {
-		constraints.video.facingMode = {ideal: 'environment'}
-	} else {
-		constraints.video = true;
-	}
-
-    navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
+  navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
         //video.src = window.URL.createObjectURL(stream);
 	
         video.srcObject = stream;
@@ -253,9 +251,9 @@ const findShade = (rgb) => {
 /* End Monochrome Hue Functions */
 
 const getExactHue = (hue, lightness, isShade) => {
- if((lightness <= 140 && lightness >= 95) || isShade) {
+ if((lightness <= 135 && lightness >= 95) || isShade) {
     return hue;
-  } else if(lightness > 140) {
+  } else if(lightness > 135) {
   	//Lighter hues
 	  switch(hue) {
 		  case "Red":
