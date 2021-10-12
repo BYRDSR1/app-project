@@ -8,8 +8,8 @@ const videoSetup = async () => {
 		video.width = document.documentElement.clientWidth;
 		video.height = document.documentElement.clientHeight;
 		video.autoplay = true;
-		video.playsinline = true;
-		video["webkit-playsinline"] = true;
+		video.setAttribute("playsinline", "")
+		//video["webkit-playsinline"] = true;
 		wrapper.appendChild(video);
 	} 
 }
