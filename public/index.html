@@ -89,8 +89,9 @@
 		</div>
 		<script id="utils-script">
 			const adjustHomepageUtils = () => {
+				const width = document.documentElement.clientWidth;
+				const height = document.documentElement.clientHeight;
 				if(document.getElementById("homepage-wrapper")) {
-					const width = document.documentElement.clientWidth;
 					const utils = document.getElementById("homepage-utils");
 					if(width < 493) {
 						utils.classList.contains("justify-content-around") ? null : (() => {
@@ -112,7 +113,14 @@
 						utils.classList.contains("w-50") ? null : utils.classList.add("w-50");
 					}		
 				} else if(document.getElementById("video-wrapper")) {
-					console.log("Hi")
+					const video = document.getElementById("video");
+					const canvas = document.getElementById("canvas");
+					//ratio is 3/4, w/h
+					video.width = width;
+					video.height = (3 / 4) * width;
+					//video.height = video.videoHeight;
+					/*canvas.width = video.videoWidth;
+					canvas.height = video.videoHeight; */
 				}
 			}
 			window.onload = () => { switchPage("homepage"); };
