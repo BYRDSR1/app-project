@@ -115,12 +115,13 @@
 				} else if(document.getElementById("video-wrapper")) {
 					const video = document.getElementById("video");
 					const canvas = document.getElementById("canvas");
-					//ratio is 3/4, w/h
-					video.width = width;
-					video.height = (3 / 4) * width;
-					//video.height = video.videoHeight;
-					/*canvas.width = video.videoWidth;
-					canvas.height = video.videoHeight; */
+					if(videoLayout === "landscape") {
+						video.width = width;
+						video.height = (3 / 4) * width;
+					} else {
+						video.width = (3 / 4) * height;
+						video.height = height;
+					}
 				}
 			}
 			window.onload = () => { switchPage("homepage"); };
