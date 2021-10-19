@@ -444,7 +444,7 @@ const identifyColor = (rgb) => {
 			getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb)) !== "Maroon" || getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb)) !== "Brown" ? debateableColors.mOrB = [] : null;
 			document.getElementById("video-bottom-bar").children[0].innerHTML = getExactHue(getHue(rgb), calcLightness(rgb), findShade(rgb));
 			
-			document.body.style.backgroundColor = "rgb(" + rgb[0]+ ", " + rgb[1] + ", " + rgb[2] + ")";
+			//document.body.style.backgroundColor = "rgb(" + rgb[0]+ ", " + rgb[1] + ", " + rgb[2] + ")";
 } 
 
 const colorStuff = () => {
