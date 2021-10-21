@@ -3,7 +3,7 @@
 ## A color-recognizing app to help those with colorblindness
 
 ## How To Use
-&nbsp;&nbsp;The /index.html page is the former working prototype of the project (although now it is currently non-functional). To use the app, go to the [/public/temp-videopage.html page](https://byrdsr1.github.io/app-project/public/temp-videopage.html) and go to home. From there, the app should work as expected.
+&nbsp;&nbsp;Simply visit the website [here](https://byrdsr1.github.io/app-project/public/index.html) and you'll be on the homepage. Note: mobile look the best, but it should still be functional for web. As of now, the only functional page is the camera page. Click the camera icon on the bottom to try it out.
 
 ## Documentation
 &nbsp;&nbsp;Documentation [here](https://github.com/BYRDSR1/app-project/wiki)
