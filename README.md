@@ -14,5 +14,3 @@
 ## Contributing
 &nbsp;&nbsp;Currently, this is a solo-project.
 
-## Credits
-&nbsp;&nbsp;Thanks to Chirag Mehta's "Name that Color" tool for the color-recognizing part of this app.
