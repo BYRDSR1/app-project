@@ -12,5 +12,5 @@
 &nbsp;&nbsp;The GitHub Pages webiste can bere found [here](https://byrdsr1.github.io/app-project/public/index.html)
 
 ## Contributing
-&nbsp;&nbsp;Currently, this is a solo-project.
+&nbsp;&nbsp;Currently, this is a solo-project for the code itself, but contributions to the wiki documentation would be much appreciated. 
 
